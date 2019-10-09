@@ -19,6 +19,8 @@ func _physics_process(delta):
 		translate(-right_vec*player_speed*delta)
 	if(Input.is_action_pressed("ui_right")):
 		translate(right_vec*player_speed*delta)
+		
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
