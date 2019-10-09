@@ -11,13 +11,13 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	if(Input.is_action_pressed("ui_up")):
+	if(Input.is_action_pressed("move_forward")):
 		translate(forward_vec*player_speed*delta)
-	if(Input.is_action_pressed("ui_down")):
+	if(Input.is_action_pressed("move_backwards")):
 		translate(-forward_vec*player_speed*delta)
-	if(Input.is_action_pressed("ui_left")):
+	if(Input.is_action_pressed("strafe_left")):
 		translate(-right_vec*player_speed*delta)
-	if(Input.is_action_pressed("ui_right")):
+	if(Input.is_action_pressed("strafe_right")):
 		translate(right_vec*player_speed*delta)
 		
 
