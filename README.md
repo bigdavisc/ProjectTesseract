@@ -1,7 +1,6 @@
 # ProjectTesseract
 Trans-dimensional combat
 
-
 CODING FORMATS:
 
 Variable: snake_case
@@ -12,4 +11,7 @@ Folders: PascalCase
 
 TODO:
 Add gravity
-Add collisions
+Map the camera to player mouse
+Networking
+-->Create second player
+-->Networking lol
