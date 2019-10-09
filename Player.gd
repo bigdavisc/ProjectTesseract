@@ -18,4 +18,4 @@ func _physics_process(delta):
 		movement += right_vec
 	if(Input.is_action_pressed("strafe_left")):
 		movement -= right_vec
-	translate(movement.normalized() * player_speed * delta)
+	move_and_collide(movement.normalized() * player_speed * delta)
