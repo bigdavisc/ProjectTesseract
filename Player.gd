@@ -13,7 +13,7 @@ func _ready():
 func _physics_process(delta):
 	if(Input.is_action_pressed("move_forward")):
 		translate(forward_vec*player_speed*delta)
-	if(Input.is_action_pressed("move_backwards")):
+	if(Input.is_action_pressed("move_backward")):
 		translate(-forward_vec*player_speed*delta)
 	if(Input.is_action_pressed("strafe_left")):
 		translate(-right_vec*player_speed*delta)
