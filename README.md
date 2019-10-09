@@ -13,4 +13,3 @@ Folders: PascalCase
 TODO:
 Add gravity
 Add collisions
-Finetune player movement
