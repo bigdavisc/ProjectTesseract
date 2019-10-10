@@ -8,6 +8,13 @@ var vertical_velocity = 0
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+func _process(delta):
+	if Input.is_action_just_pressed("ui_cancel"):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			
 func _physics_process(delta):
 	var movement = Vector3()
 	var cam_transform = $Camera.get_global_transform()
@@ -36,4 +43,3 @@ func _input(event):
 		$Camera.rotate_x(deg2rad(event.relative.y * 0.05))
 		$Camera.rotation.x = clamp($Camera.rotation.x, deg2rad(-70), deg2rad(70))
 		rotate_y(deg2rad(event.relative.x * 0.05 * -1))
-		

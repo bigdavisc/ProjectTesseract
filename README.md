@@ -11,7 +11,8 @@ Folders: PascalCase
 
 TODO:
 Add gravity
-Map the camera to player mouse
+Improve mouse looking
+Add acceleration to movement
 Networking
 -->Create second player
 -->Networking lol
