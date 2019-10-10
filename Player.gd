@@ -1,26 +1,39 @@
 extends KinematicBody
 
-var forward_vec = Vector3(1, 0, 0)
-var right_vec = Vector3(0, 0, 1)
-var movement = Vector3()
 var player_speed = 6
 
-var gravity = 9.8#Will be changed by plane Player exists on
+var gravity = 9.8  #Will be changed by plane Player exists on
 var vertical_velocity = 0
 
 func _ready():
-	pass
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
-	movement = Vector3()
+	var movement = Vector3()
+	var cam_transform = $Camera.get_global_transform()
+	
+	var input = Vector2()
 	if(Input.is_action_pressed("move_forward")):
-		movement += forward_vec
+		input.y += 1
 	if(Input.is_action_pressed("move_backward")):
-		movement -= forward_vec
+		input.y -= 1
 	if(Input.is_action_pressed("strafe_right")):
-		movement += right_vec
+		input.x += 1
 	if(Input.is_action_pressed("strafe_left")):
-		movement -= right_vec
+		input.x -= 1
+	input = input.normalized()
+	
+	movement += cam_transform.basis.x * input.x
+	movement += -cam_transform.basis.z * input.y
+	movement.y = 0
+	movement = movement.normalized()
 	#vertical_velocity -= gravity #This will be disabled/reset while on a surface
 	#movement.y += vertical_velocity
-	move_and_collide(movement.normalized() * player_speed * delta)
+	move_and_collide(movement * player_speed * delta)
+
+func _input(event):
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		$Camera.rotate_x(deg2rad(event.relative.y * 0.05))
+		$Camera.rotation.x = clamp($Camera.rotation.x, deg2rad(-70), deg2rad(70))
+		rotate_y(deg2rad(event.relative.x * 0.05 * -1))
+		
