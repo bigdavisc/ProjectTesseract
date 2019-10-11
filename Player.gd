@@ -1,7 +1,9 @@
 extends KinematicBody
 
-var player_speed = 6
-
+var player_speed = 8
+var mouse_sensetivity = 0.1
+var upper_view_limit = 50
+var lower_view_limit = 50
 var gravity = 9.8  #Will be changed by plane Player exists on
 var vertical_velocity = 0
 
@@ -40,6 +42,6 @@ func _physics_process(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		$Camera.rotate_x(deg2rad(event.relative.y * 0.05))
-		$Camera.rotation.x = clamp($Camera.rotation.x, deg2rad(-70), deg2rad(70))
-		rotate_y(deg2rad(event.relative.x * 0.05 * -1))
+		$Camera.rotate_x(deg2rad(event.relative.y * mouse_sensetivity))
+		$Camera.rotation.x = clamp($Camera.rotation.x, deg2rad(-lower_view_limit), deg2rad(upper_view_limit))
+		rotate_y(deg2rad(event.relative.x * mouse_sensetivity * -1))
