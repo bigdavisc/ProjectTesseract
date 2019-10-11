@@ -11,8 +11,6 @@ Folders: PascalCase
 
 TODO:
 Add gravity
-Improve mouse looking
-Add acceleration to movement
 Networking
 -->Create second player
 -->Networking lol

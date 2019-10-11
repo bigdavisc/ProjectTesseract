@@ -74,4 +74,4 @@ material = ExtResource( 1 )
 
 [node name="Portal" parent="Portals" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, 0 )
-newPos = Vector3( 10, 0.5, 0 )
+newPos = Vector3( 10, 2, 0 )
