@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Portal.gd" type="Script" id=1]
 
@@ -6,12 +6,58 @@
 radius = 0.702591
 height = 0.998605
 
+[sub_resource type="ImageTexture" id=3]
+
+[sub_resource type="OpenSimplexNoise" id=4]
+period = 36.4
+
+[sub_resource type="NoiseTexture" id=5]
+seamless = true
+noise = SubResource( 4 )
+
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.4, 0.0392157, 0.239216, 1 )
 metallic = 0.31
 metallic_specular = 0.75
+detail_enabled = true
+detail_mask = SubResource( 5 )
+detail_blend_mode = 0
+detail_uv_layer = 0
+detail_albedo = SubResource( 3 )
 
-[node name="Portal" type="Area"]
+[sub_resource type="Animation" id=6]
+resource_name = "Idle"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CSGPolygon:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CSGPolygon:polygon")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 0, -1.5, 0, 1.5, 0.3, 0.75, 0.9, 0, 0.3, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.6, 0.75, 0.5, 0, 0.6, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.3, 0.75, 0.9, 0, 0.3, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.6, 0.75, 0.5, 0, 0.6, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.3, 0.75, 0.9, 0, 0.3, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.6, 0.75, 0.5, 0, 0.6, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.3, 0.75, 0.9, 0, 0.3, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.6, 0.75, 0.5, 0, 0.6, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.3, 0.75, 0.9, 0, 0.3, -0.75 ) ]
+}
+
+[node name="Portal" type="Area" groups=[
+"Portal",
+]]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -19,7 +65,8 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0
 shape = SubResource( 1 )
 
 [node name="CSGPolygon" type="CSGPolygon" parent="."]
-polygon = PoolVector2Array( 0.200563, -1.24398, 0.177276, 1.44247, 0.548568, 0.752445, 0.716118, 0.200132, 0.600075, -0.498308, 0.44578, -0.855249 )
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0 )
+polygon = PoolVector2Array( 0, -1.5, 0, 1.5, 0.3, 0.75, 0.9, 0, 0.3, -0.75 )
 mode = 1
 spin_degrees = 360.0
 spin_sides = 10
@@ -30,4 +77,9 @@ light_color = Color( 0.996078, 0.784314, 0.988235, 1 )
 light_energy = 7.79
 light_indirect_energy = 7.3
 omni_range = 2.33022
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+anims/Idle = SubResource( 6 )
 [connection signal="body_entered" from="." to="." method="_on_Portal_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Portal_body_exited"]
