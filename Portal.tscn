@@ -1,29 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Portal.gd" type="Script" id=1]
+[ext_resource path="res://portal_material.tres" type="Material" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.702591
 height = 0.998605
-
-[sub_resource type="ImageTexture" id=3]
-
-[sub_resource type="OpenSimplexNoise" id=4]
-period = 36.4
-
-[sub_resource type="NoiseTexture" id=5]
-seamless = true
-noise = SubResource( 4 )
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.4, 0.0392157, 0.239216, 1 )
-metallic = 0.31
-metallic_specular = 0.75
-detail_enabled = true
-detail_mask = SubResource( 5 )
-detail_blend_mode = 0
-detail_uv_layer = 0
-detail_albedo = SubResource( 3 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "Idle"
@@ -57,7 +39,6 @@ tracks/1/keys = {
 [node name="Portal" type="Area" groups=[
 "Portal",
 ]]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -70,7 +51,7 @@ polygon = PoolVector2Array( 0, -1.5, 0, 1.5, 0.3, 0.75, 0.9, 0, 0.3, -0.75 )
 mode = 1
 spin_degrees = 360.0
 spin_sides = 10
-material = SubResource( 2 )
+material = ExtResource( 2 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
 light_color = Color( 0.996078, 0.784314, 0.988235, 1 )
@@ -81,5 +62,11 @@ omni_range = 2.33022
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 anims/Idle = SubResource( 6 )
+
+[node name="RotationVisualizer" type="CSGCylinder" parent="."]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0, 1 )
+radius = 0.05
+height = 1.5
+material = ExtResource( 2 )
 [connection signal="body_entered" from="." to="." method="_on_Portal_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Portal_body_exited"]
