@@ -9,6 +9,7 @@ var mouse_sensetivity = 0.1  # We might want to move this into a settings file
 var gravity = 9.8  #Will be changed by plane Player exists on
 
 var input_velocity = Vector2()
+var bullet_scene = load("res://Bullet.tscn")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -35,6 +36,9 @@ func process_input():
 	if(Input.is_action_pressed("strafe_left")):
 		input_velocity.x -= 1
 	input_velocity = input_velocity.normalized()
+	
+	if(Input.is_action_just_pressed("left_click")):
+		shoot()
 
 func process_movement(delta):
 	var camera_transform = $Camera.get_global_transform()
@@ -63,6 +67,14 @@ func process_movement(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		$Camera.rotate_x(deg2rad(event.relative.y * mouse_sensetivity))
+		$Camera.rotate_x(deg2rad(event.relative.y * mouse_sensetivity * -1))
 		$Camera.rotation.x = clamp($Camera.rotation.x, deg2rad(-LOWER_VIEW_LIMIT), deg2rad(UPPER_VIEW_LIMIT))
 		rotate_y(deg2rad(event.relative.x * mouse_sensetivity * -1))
+		
+func shoot():
+	var bullet = bullet_scene.instance()
+	bullet.translation = $Camera/Gun/BulletSpawn.get_global_transform().origin
+	bullet.rotation = $Camera.global_transform.basis.get_euler()
+	bullet.rotation.y += deg2rad(180)
+	bullet.rotation.x *= -1
+	get_parent().add_child(bullet)

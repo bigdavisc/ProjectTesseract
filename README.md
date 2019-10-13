@@ -1,5 +1,5 @@
 # ProjectTesseract
-Trans-dimensional combat
+Transdimensional combat
 
 CODING FORMATS:
 
@@ -11,6 +11,8 @@ Folders: PascalCase
 
 TODO:
 Add gravity
+Clean up project structure
+Improve gun/bullet system, move code out of player class, etc
 Networking
 -->Create second player
 -->Networking lol
