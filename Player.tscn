@@ -32,4 +32,4 @@ mesh = ExtResource( 3 )
 material/0 = null
 
 [node name="BulletSpawn" type="Position3D" parent="Camera/Gun"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0116205, 2.14624, 6.8187 )
+transform = Transform( 1, 0, 3.55271e-14, 0, 1, 0, -3.55271e-14, 0, 1, 0.0116198, 2.14624, 13.5259 )

@@ -4,11 +4,13 @@ const BASE_SPEED = 30
 const UPPER_VIEW_LIMIT = 50
 const LOWER_VIEW_LIMIT = 50
 const MOUSE_SENSITIVITY = 0.1
+const JUMP_VELOCITY = 10
 
 var mouse_sensetivity = 0.1  # We might want to move this into a settings file
-var gravity = 9.8  #Will be changed by plane Player exists on
+var gravity = 20  #Will be changed by plane Player exists on
 
 var input_velocity = Vector2()
+var vertical_velocity = 0
 var bullet_scene = load("res://Bullet.tscn")
 
 func _ready():
@@ -58,7 +60,14 @@ func process_movement(delta):
 	horizontal_velocity = horizontal_velocity.linear_interpolate(target, accel * delta)
 	
 	# Vertical movement - Noah do your stuff here
-	var vertical_velocity = 0
+	if is_on_floor():
+		if Input.is_action_pressed("jump"):
+			vertical_velocity = JUMP_VELOCITY
+		else:
+			vertical_velocity = 0
+	else:
+		vertical_velocity -= gravity * delta
+	
 	#vertical_velocity -= gravity #This will be disabled/reset while on a surface
 	#movement.y += vertical_velocity
 	

@@ -7,6 +7,7 @@
 [node name="World" type="Spatial"]
 
 [node name="GreenMap" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
 
 [node name="Floor" parent="GreenMap/Geometry" index="0"]
 editor/display_folded = false
