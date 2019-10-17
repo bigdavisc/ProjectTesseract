@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Entities/Portal/Portal.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Portal/PortalMaterial.tres" type="Material" id=2]
+
+
+
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.702591
+height = 0.998605
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CSGPolygon:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CSGPolygon:polygon")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 0, -1.5, 0, 1.5, 0.3, 0.75, 0.9, 0, 0.3, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.6, 0.75, 0.5, 0, 0.6, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.3, 0.75, 0.9, 0, 0.3, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.6, 0.75, 0.5, 0, 0.6, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.3, 0.75, 0.9, 0, 0.3, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.6, 0.75, 0.5, 0, 0.6, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.3, 0.75, 0.9, 0, 0.3, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.6, 0.75, 0.5, 0, 0.6, -0.75 ), PoolVector2Array( 0, -1.5, 0, 1.5, 0.3, 0.75, 0.9, 0, 0.3, -0.75 ) ]
+}
+
+[node name="Portal" type="Area" groups=[
+"Portal",
+]]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="."]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0 )
+polygon = PoolVector2Array( 0, -1.5, 0, 1.5, 0.3, 0.75, 0.9, 0, 0.3, -0.75 )
+mode = 1
+spin_degrees = 360.0
+spin_sides = 10
+material = ExtResource( 2 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+light_color = Color( 0.996078, 0.784314, 0.988235, 1 )
+light_energy = 7.79
+light_indirect_energy = 7.3
+omni_range = 2.33022
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+anims/Idle = SubResource( 2 )
+
+[node name="RotationVisualizer" type="CSGCylinder" parent="."]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0, -1 )
+radius = 0.05
+height = 1.5
+material = ExtResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_Portal_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Portal_body_exited"]
