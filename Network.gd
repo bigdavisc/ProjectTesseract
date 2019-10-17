@@ -3,7 +3,7 @@ extends Node
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-const DEFAULT_IP = "LOCALHOSST"
+const DEFAULT_IP = "10.0.0.241" #IP
 const DEFAULT_PORT = 25565
 const MAX_PLAYERS = 20
 
@@ -48,7 +48,7 @@ remote func _send_player_info(id, info):
 			rpc_id(id, '_send_player_info', peer_id, players[peer_id])
 	players[id] = info
 	
-	var new_player = load('res://player/Player.tscn').instance() #Path to player object
+	var new_player = load('res://Entities/Player/Player.tscn').instance() #Path to player object
 	new_player.name = str(id)
 	new_player.set_network_master(id)
 	get_tree().get_root().add_child(new_player)
@@ -56,6 +56,3 @@ remote func _send_player_info(id, info):
 
 func update_position(id, position):
 	pass
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

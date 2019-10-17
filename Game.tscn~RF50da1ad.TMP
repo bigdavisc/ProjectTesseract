@@ -28,7 +28,7 @@ connectedPortal = "PortalD"
 
 [node name="GreenMap2" parent="." instance=ExtResource( 1 )]
 editor/display_folded = true
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 70.9995, -14, 0 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 70.9995, -14, 0 )
 
 [node name="Floor" parent="GreenMap2/Geometry" index="0"]
 editor/display_folded = false
