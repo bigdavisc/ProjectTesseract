@@ -6,12 +6,16 @@ const LOWER_VIEW_LIMIT = 50
 const MOUSE_SENSITIVITY = 0.1
 const JUMP_VELOCITY = 10
 
+
 var mouse_sensetivity = 0.1  # We might want to move this into a settings file
 var gravity = 20  #Will be changed by plane Player exists on
 
 var input_velocity = Vector2()
 var vertical_velocity = 0
 var bullet_scene = load("res://Entities/Weapons/Bullet.tscn")
+
+func _init(name, pos, truth):
+	pass
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
