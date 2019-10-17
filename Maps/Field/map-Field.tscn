@@ -140,6 +140,7 @@ material/113 = null
 material/114 = null
 material/115 = null
 material/116 = null
+material/117 = null
 
 [node name="border_collider1" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1809, 9.53838, 157.512 )
