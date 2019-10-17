@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/facility.obj-03fca5d0769441f8baf8d52067b0d5c0.mesh"
+
+[deps]
+
+files=[ "res://.import/facility.obj-03fca5d0769441f8baf8d52067b0d5c0.mesh" ]
+
+source_file="res://Maps/Facility/facility.obj"
+dest_files=[ "res://.import/facility.obj-03fca5d0769441f8baf8d52067b0d5c0.mesh", "res://.import/facility.obj-03fca5d0769441f8baf8d52067b0d5c0.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
