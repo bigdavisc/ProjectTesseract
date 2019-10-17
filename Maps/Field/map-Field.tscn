@@ -1,0 +1,158 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Maps/Field/field_surface.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Maps/Field/field_detail.obj" type="ArrayMesh" id=2]
+
+[sub_resource type="ConcavePolygonShape" id=1]
+data = PoolVector3Array( -14.7381, 6.6732, -11.0334, -85.1698, 6.1208, 85.1698, -132.145, 0, -69.7924, -14.9575, 14.6118, 49.2348, -14.7381, 6.6732, -11.0334, 55.6936, 7.2257, -107.237, 67.9847, 12.525, -8.8933, 55.6936, 7.2257, -107.237, 177.288, 0, -85.1698, 67.9847, 12.525, -8.8933, 177.288, 0, -85.1698, 177.288, 0, 85.1698, 67.2812, -2.0292, 146.846, -75.9343, 6.1208, 146.846, 67.9847, 12.525, -8.8933, -75.9343, 6.1208, 146.846, -85.1698, 6.1208, 85.1698, -14.9575, 14.6118, 49.2348, 144.731, 0, 146.846, 67.9847, 12.525, -8.8933, 177.288, 0, 85.1698, 67.9847, 12.525, -8.8933, 144.731, 0, 146.846, 67.2812, -2.0292, 146.846, 58.6898, 23.6335, -109.743, 55.6936, 7.2257, -107.237, -132.145, 23.3667, -69.7924, -132.145, 23.3667, -69.7924, 55.6936, 7.2257, -107.237, -132.145, 0, -69.7924, -132.145, 0, -69.7924, 55.6936, 7.2257, -107.237, -38.2259, 0.3721, -88.5145, -132.145, 23.3667, -69.7924, -132.145, 0, -69.7924, -85.1698, 29.4875, 85.1698, -85.1698, 29.4875, 85.1698, -132.145, 0, -69.7924, -85.1698, 6.1208, 85.1698, 177.288, 0, -85.1698, 55.6936, 7.2257, -107.237, 58.6898, 23.6335, -109.743, 177.288, 0, -85.1698, 58.6898, 23.6335, -109.743, 55.6936, 30.5923, -150.204, 55.6936, 30.5923, -150.204, 58.6898, 23.6335, -109.743, -132.145, 23.3667, -112.76, -132.145, 23.3667, -112.76, 58.6898, 23.6335, -109.743, -132.145, 23.3667, -69.7924, 177.288, 0, -85.1698, 55.6936, 30.5923, -150.204, 177.288, 17.2553, -128.137, -165.898, 28.8688, -126.854, -132.145, 23.3667, -112.76, -165.898, 28.8688, -83.8863, -165.898, 28.8688, -83.8863, -132.145, 23.3667, -112.76, -132.145, 23.3667, -69.7924, -165.898, 28.8688, -83.8863, -132.145, 23.3667, -69.7924, -118.923, 34.9896, 71.0759, -118.923, 34.9896, 71.0759, -132.145, 23.3667, -69.7924, -85.1698, 29.4875, 85.1698, 55.6936, 30.5923, -150.204, -132.145, 23.3667, -112.76, -165.898, 28.8688, -126.854, 67.9847, 12.525, -8.8933, -14.9575, 14.6118, 49.2348, 55.6936, 7.2257, -107.237, -14.7381, 6.6732, -11.0334, -14.9575, 14.6118, 49.2348, -85.1698, 6.1208, 85.1698, -75.9343, 6.1208, 146.846, -14.9575, 14.6118, 49.2348, 67.9847, 12.525, -8.8933, -121.445, 29.4875, 127.614, -85.1698, 29.4875, 85.1698, -121.445, 6.1208, 127.614, -121.445, 6.1208, 127.614, -85.1698, 29.4875, 85.1698, -85.1698, 6.1208, 85.1698, -139.997, 29.4875, 215.169, -121.445, 29.4875, 127.614, -139.997, 6.1208, 215.169, -139.997, 6.1208, 215.169, -121.445, 29.4875, 127.614, -121.445, 6.1208, 127.614, -118.923, 34.9896, 71.0759, -85.1698, 29.4875, 85.1698, -121.445, 29.4875, 127.614, -118.923, 34.9896, 71.0759, -121.445, 29.4875, 127.614, -139.997, 29.4875, 215.169, -121.445, 6.1208, 127.614, -85.1698, 6.1208, 85.1698, -75.9343, 6.1208, 146.846, -139.997, 6.1208, 215.169, -121.445, 6.1208, 127.614, -75.9343, 6.1208, 146.846, -56.6402, 6.1208, 220.798, -75.9343, 6.1208, 146.846, 86.5753, -2.0292, 220.798, 86.5753, -2.0292, 220.798, -75.9343, 6.1208, 146.846, 67.2812, -2.0292, 146.846, -139.997, 6.1208, 215.169, -75.9343, 6.1208, 146.846, -56.6402, 6.1208, 220.798, 86.5753, -2.0292, 220.798, 67.2812, -2.0292, 146.846, 144.731, 0, 146.846, 197.176, 0, 172.914, 144.731, 0, 146.846, 229.733, 0, 111.239, 229.733, 0, 111.239, 144.731, 0, 146.846, 177.288, 0, 85.1698, 86.5753, -2.0292, 220.798, 144.731, 0, 146.846, 197.176, 0, 172.914, 177.288, 0, 85.1698, 177.288, 0, -85.1698, 229.733, 0, 111.239, -14.7381, 6.6732, -11.0334, -132.145, 0, -69.7924, -38.2259, 0.3721, -88.5145, 55.6936, 7.2257, -107.237, -14.7381, 6.6732, -11.0334, -38.2259, 0.3721, -88.5145 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 135.018, 15.0167, 1 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 27.5931, 12.1679, 1 )
+
+[node name="map-Field" type="StaticBody"]
+
+[node name="field_surface" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = null
+
+[node name="surface_collider" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="field_detail" type="MeshInstance" parent="."]
+mesh = ExtResource( 2 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+material/6 = null
+material/7 = null
+material/8 = null
+material/9 = null
+material/10 = null
+material/11 = null
+material/12 = null
+material/13 = null
+material/14 = null
+material/15 = null
+material/16 = null
+material/17 = null
+material/18 = null
+material/19 = null
+material/20 = null
+material/21 = null
+material/22 = null
+material/23 = null
+material/24 = null
+material/25 = null
+material/26 = null
+material/27 = null
+material/28 = null
+material/29 = null
+material/30 = null
+material/31 = null
+material/32 = null
+material/33 = null
+material/34 = null
+material/35 = null
+material/36 = null
+material/37 = null
+material/38 = null
+material/39 = null
+material/40 = null
+material/41 = null
+material/42 = null
+material/43 = null
+material/44 = null
+material/45 = null
+material/46 = null
+material/47 = null
+material/48 = null
+material/49 = null
+material/50 = null
+material/51 = null
+material/52 = null
+material/53 = null
+material/54 = null
+material/55 = null
+material/56 = null
+material/57 = null
+material/58 = null
+material/59 = null
+material/60 = null
+material/61 = null
+material/62 = null
+material/63 = null
+material/64 = null
+material/65 = null
+material/66 = null
+material/67 = null
+material/68 = null
+material/69 = null
+material/70 = null
+material/71 = null
+material/72 = null
+material/73 = null
+material/74 = null
+material/75 = null
+material/76 = null
+material/77 = null
+material/78 = null
+material/79 = null
+material/80 = null
+material/81 = null
+material/82 = null
+material/83 = null
+material/84 = null
+material/85 = null
+material/86 = null
+material/87 = null
+material/88 = null
+material/89 = null
+material/90 = null
+material/91 = null
+material/92 = null
+material/93 = null
+material/94 = null
+material/95 = null
+material/96 = null
+material/97 = null
+material/98 = null
+material/99 = null
+material/100 = null
+material/101 = null
+material/102 = null
+material/103 = null
+material/104 = null
+material/105 = null
+material/106 = null
+material/107 = null
+material/108 = null
+material/109 = null
+material/110 = null
+material/111 = null
+material/112 = null
+material/113 = null
+material/114 = null
+material/115 = null
+material/116 = null
+
+[node name="border_collider1" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1809, 9.53838, 157.512 )
+shape = SubResource( 2 )
+
+[node name="border_collider2" type="CollisionShape" parent="."]
+transform = Transform( 0.713908, 0, 0.70024, 0, 1, 0, -0.70024, 0, 0.713908, 131.879, 9.53838, 113.023 )
+shape = SubResource( 2 )
+
+[node name="border_collider3" type="CollisionShape" parent="."]
+transform = Transform( -0.0135914, 0, 0.999908, 0, 1, 0, -0.999908, 0, -0.0135914, 177.328, 9.53838, 22.9477 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.713884, 0, -0.700264, 0, 1, 0, 0.700264, 0, 0.713884, 158.572, 11.1299, -77.8318 )
+shape = SubResource( 3 )
