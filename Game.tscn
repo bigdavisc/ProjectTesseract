@@ -1,50 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Maps/Green/GreenMap.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Entities/Portal/Portal.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Maps/Field/map-Field.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Maps/Field/map-Field.tscn" type="PackedScene" id=2]
 
 [node name="Game" type="Spatial"]
 
-[node name="GreenMap" parent="." instance=ExtResource( 1 )]
-editor/display_folded = true
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0 )
 
-[node name="Floor" parent="GreenMap/Geometry" index="0"]
-editor/display_folded = false
-
-[node name="Portals" parent="GreenMap" index="1"]
-editor/display_folded = true
-
-[node name="PortalA" parent="GreenMap/Portals" index="0" instance=ExtResource( 2 )]
-transform = Transform( 1.31134e-007, 0, -1, 0, 1, 0, 1, 0, 1.31134e-007, -14, 2, 10 )
-connectedPortal = "PortalC"
-
-[node name="PortalB" parent="GreenMap/Portals" index="1" instance=ExtResource( 2 )]
-transform = Transform( 1.31134e-007, 0, -1, 0, 1, 0, 1, 0, 1.31134e-007, -12, 2, -9 )
-connectedPortal = "PortalD"
-
-[node name="GreenMap2" parent="." instance=ExtResource( 1 )]
-editor/display_folded = true
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 70.9995, -14, 0 )
-
-[node name="Floor" parent="GreenMap2/Geometry" index="0"]
-editor/display_folded = false
-
-[node name="PortalC" parent="GreenMap2/Portals" index="0" instance=ExtResource( 2 )]
-transform = Transform( 1.31134e-007, 0, -1, 0, 1, 0, 1, 0, 1.31134e-007, -13, 2, -11 )
-connectedPortal = "PortalA"
-
-[node name="PortalD" parent="GreenMap2/Portals" index="1" instance=ExtResource( 2 )]
-transform = Transform( 2.60771e-007, 0, -1, 0, 1, 0, 1, 0, 2.60771e-007, -13, 2, 15 )
-connectedPortal = "PortalB"
-
-[node name="Player" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-
-[node name="map-Field" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -51.4919, 0 )
-
-[editable path="GreenMap"]
-
-[editable path="GreenMap2"]
+[node name="map-Field" parent="." instance=ExtResource( 2 )]
