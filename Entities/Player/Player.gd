@@ -11,7 +11,7 @@ var gravity = 20  #Will be changed by plane Player exists on
 
 var input_velocity = Vector2()
 var vertical_velocity = 0
-var bullet_scene = load("res://Bullet.tscn")
+var bullet_scene = load("res://Entities/Weapons/Bullet.tscn")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

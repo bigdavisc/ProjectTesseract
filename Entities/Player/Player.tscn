@@ -4,9 +4,6 @@
 [ext_resource path="res://Entities/Player/player.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://Entities/Weapons/gun.obj" type="ArrayMesh" id=3]
 
-
-
-
 [sub_resource type="CapsuleShape" id=1]
 height = 4.5
 
