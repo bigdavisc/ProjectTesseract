@@ -38,7 +38,6 @@ func _on_buttonHost_pressed():
 		print("Error creating server")
 		return
 		
-	globals.current_player_count += 1
 	$buttonJoin.hide()
 	$IPLabel.hide()
 	$IPValue.hide()
