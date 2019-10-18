@@ -1,14 +1,13 @@
-extends Node2D
+extends Control
 
 var player_name = ""
 
-func _on_TextField_text_changed(new_text):
-	player_name = $TextField.text
-
-func _on_JoinButton_pressed():
+func _on_ConnectButton_pressed():
+	player_name = $VerticalBoxes/Username/Field.text
 	if player_name == "":
 		return
 	_load_game()
+
 
 func _load_game():
 	get_tree().change_scene('res://Menus/Lobby/Lobby.tscn')
