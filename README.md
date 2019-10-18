@@ -12,14 +12,13 @@ Scenes: **PascalCase**
 Folders: **PascalCase**
 
 
-## Roadmap
+## Todo
 
 - Simplify project structure and define organizational hierarchy
 - Have bullets show over networked game
 - Prevent both players guns from rotating on a vertical axis during a multiplayer game
 - Implement UPNP port mapping
 - Autodetect running games on local network
-- More to come...
 
 ## Authors
 - Matthias Harden
