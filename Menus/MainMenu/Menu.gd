@@ -11,5 +11,5 @@ func _on_JoinButton_pressed():
 	_load_game()
 
 func _load_game():
-	get_tree().change_scene('res://Lobby.tscn')
+	get_tree().change_scene('res://Menus/Lobby/Lobby.tscn')
 	
