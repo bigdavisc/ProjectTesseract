@@ -16,6 +16,8 @@ var bullet_scene = load("res://Entities/Weapons/Bullet.tscn")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if is_network_master():
+		$MeshInstance.set_layer_mask_bit(1, false)
 
 puppet func setPosition(pos):
 	set_global_transform(pos)
