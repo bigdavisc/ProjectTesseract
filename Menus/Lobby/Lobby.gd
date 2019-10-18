@@ -50,10 +50,17 @@ func _on_buttonJoin_pressed():
 	print("Joining network")
 	var host = NetworkedMultiplayerENet.new()
 	var goalIP = $Panel/Container/VContainer/HContainer/Container/HContainer/IPValue.text
-	host.create_client(goalIP,DEFAULT_PORT)
+	var res = host.create_client(goalIP,DEFAULT_PORT)
+	if res != OK:
+		print("Error joining server")
+		return
 	get_tree().set_network_peer(host)
 
 func _on_LaunchMatch_pressed():
+	game_begin()
+	rpc("game_begin")
+
+func game_begin():
 	var game = preload("res://Core/Game.tscn").instance()
 	get_tree().get_root().add_child(game)
 	hide()
