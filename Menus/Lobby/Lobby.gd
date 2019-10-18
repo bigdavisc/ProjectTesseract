@@ -15,6 +15,7 @@ func _ready():
 
 func _player_connected(id):
 	print("Player connected to the server!")
+	
 	globals.current_player_count += 1
 	globals.players[id] = id #Turn into a player name
 	print("Current player count: " + str(globals.current_player_count))
