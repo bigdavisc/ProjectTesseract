@@ -58,7 +58,7 @@ func _on_buttonJoin_pressed():
 
 func _on_LaunchMatch_pressed():
 	game_begin()
-	rpc("game_begin")
+	rpc_unreliable("game_begin")
 
 func game_begin():
 	var game = preload("res://Core/Game.tscn").instance()
