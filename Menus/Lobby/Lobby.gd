@@ -41,7 +41,7 @@ func _on_buttonHost_pressed():
 	var bar = $Panel/Container/VContainer/HContainer
 	var joinContainer = bar.get_node("Container/HContainer")
 	joinContainer.get_node("buttonJoin").disabled = true
-	joinContainer.get_node("IPValue").readonly = true
+	joinContainer.get_node("IPValue").editable = false
 	bar.get_node("LaunchMatch").disabled = false
 	bar.get_node("buttonHost").disabled = true
 	get_tree().set_network_peer(host)
