@@ -1,4 +1,4 @@
-extends Node2D
+extends MarginContainer
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -37,28 +37,21 @@ func _on_buttonHost_pressed():
 	if res != OK:
 		print("Error creating server")
 		return
-		
-	$buttonJoin.hide()
-	$IPLabel.hide()
-	$IPValue.hide()
-	$buttonHost.disabled = true
-	$LaunchMatch.show()
-	$LaunchMatch.disabled = false
+
+	var bar = $Panel/Container/VContainer/HContainer
+	var joinContainer = bar.get_node("Container/HContainer")
+	joinContainer.get_node("buttonJoin").disabled = true
+	joinContainer.get_node("IPValue").readonly = true
+	bar.get_node("LaunchMatch").disabled = false
+	bar.get_node("buttonHost").disabled = true
 	get_tree().set_network_peer(host)
 
 func _on_buttonJoin_pressed():
 	print("Joining network")
 	var host = NetworkedMultiplayerENet.new()
+	var goalIP = $Panel/Container/VContainer/HContainer/Container/HContainer/IPValue.text
 	host.create_client(goalIP,DEFAULT_PORT)
 	get_tree().set_network_peer(host)
-	$buttonHost.hide()
-	$buttonJoin.disabled = true
-
-
-func _on_IPValue_text_changed():
-	goalIP = $IPValue.text
-	print(str(goalIP))
-
 
 func _on_LaunchMatch_pressed():
 	var game = preload("res://Core/Game.tscn").instance()
