@@ -8,7 +8,7 @@ const DEFAULT_PORT = 25565
 const MAX_PLAYERS = 20
 
 var players = { }
-var self_data = { name = '', position = Vector3(360, 180, 0)}
+var self_data = { name = ''}
 var goalIP = "127.0.0.1"
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,7 +32,11 @@ func _on_buttonHost_pressed():
 		return
 		
 	$buttonJoin.hide()
+	$IPLabel.hide()
+	$IPValue.hide()
 	$buttonHost.disabled = true
+	$LaunchMatch.show()
+	$LaunchMatch.disabled = false
 	get_tree().set_network_peer(host)
 
 func _on_buttonJoin_pressed():
@@ -43,6 +47,13 @@ func _on_buttonJoin_pressed():
 	$buttonHost.hide()
 	$buttonJoin.disabled = true
 
-func _on_PortValue_text_changed():
+
+func _on_IPValue_text_changed():
 	goalIP = $PortValue.text
 	print(str(goalIP))
+
+
+func _on_LaunchMatch_pressed():
+	var game = preload("res://Core/Game.tscn").instance()
+	get_tree().get_root().add_child(game)
+	hide()
