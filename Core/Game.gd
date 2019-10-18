@@ -12,6 +12,6 @@ func _ready():
 		var player_list = globals.players.keys()
 		for key in player_list:
 			var otherPlayer = preload("res://Entities/Player/Player.tscn").instance()
-			otherPlayer.set_name(str(globals.players.get(key)))
-			otherPlayer.set_network_master(str(globals.players.get(key)))
+			otherPlayer.set_name(int(globals.players.get(key)))
+			otherPlayer.set_network_master(int(globals.players.get(key)))
 			add_child(otherPlayer)
