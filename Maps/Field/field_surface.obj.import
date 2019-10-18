@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/field_surface.obj-486461f9efcc105e635d894cd97ee8f9.mesh"
+
+[deps]
+
+files=[ "res://.import/field_surface.obj-486461f9efcc105e635d894cd97ee8f9.mesh" ]
+
+source_file="res://Maps/Field/field_surface.obj"
+dest_files=[ "res://.import/field_surface.obj-486461f9efcc105e635d894cd97ee8f9.mesh", "res://.import/field_surface.obj-486461f9efcc105e635d894cd97ee8f9.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
