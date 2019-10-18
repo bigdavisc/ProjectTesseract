@@ -22,19 +22,20 @@ func create_server(player_nickname):
 
 func connect_to_server(player_nickname):
 	self_data.name = player_nickname
+	print("Run get_tree.connect")
 	get_tree().connect('connected_to_server', self, '_connected_to_server')
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(DEFAULT_IP, DEFAULT_PORT)
 	get_tree().set_network_peer(peer)
 
 func _connected_to_server():
+	print("_connected_to_server has run")
 	players[get_tree().get_network_unique_id()] = self_data
 	rpc('_send_player_info', get_tree().get_network_unique_id(), self_data)
 
 
 func _player_connected(id):
 	print('Player connected: ' + str(id))
-	players.erase(id)
 
 func _player_disconnected(id):
 	#TODO: Remove player from game scene
@@ -55,4 +56,4 @@ remote func _send_player_info(id, info):
 	new_player.init(info.name, info.position, true)
 
 func update_position(id, position):
-	pass
+	players[id].position = position

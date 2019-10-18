@@ -2,22 +2,15 @@
 
 [ext_resource path="res://Menu.gd" type="Script" id=1]
 
-[node name="Node2D" type="Control"]
+[node name="Control" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="JoinButton" type="Button" parent="."]
-margin_left = 248.0
-margin_top = 307.0
-margin_right = 369.0
-margin_bottom = 364.0
+margin_left = 447.0
+margin_top = 281.0
+margin_right = 568.0
+margin_bottom = 338.0
 text = "JOIN"
-
-[node name="CreateButton" type="Button" parent="."]
-margin_left = 541.0
-margin_top = 309.0
-margin_right = 662.0
-margin_bottom = 366.0
-text = "CREATE"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = 262.0
@@ -32,5 +25,4 @@ margin_top = 214.0
 margin_right = 639.0
 margin_bottom = 254.0
 [connection signal="pressed" from="JoinButton" to="." method="_on_JoinButton_pressed"]
-[connection signal="pressed" from="CreateButton" to="." method="_on_CreateButton_pressed"]
 [connection signal="text_changed" from="TextField" to="." method="_on_TextField_text_changed" binds= [ "TextField.text" ]]
