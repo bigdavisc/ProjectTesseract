@@ -7,7 +7,6 @@ const DEFAULT_IP = "127.0.0.1"
 const DEFAULT_PORT = 25565
 const MAX_PLAYERS = 20
 
-var players = { }
 var self_data = { name = ''}
 var goalIP = "127.0.0.1"
 # Called when the node enters the scene tree for the first time.
@@ -16,11 +15,19 @@ func _ready():
 
 func _player_connected(id):
 	print("Player connected to the server!")
+	globals.current_player_count += 1
+	globals.players.add(id)
+	print("Current player count: " + str(globals.current_player_count))
 	
-	globals.otherPlayerId = id
-	var game = preload("res://Core/Game.tscn").instance()
-	get_tree().get_root().add_child(game)
-	hide()
+	#Remove this code
+	#var game = preload("res://Core/Game.tscn").instance()
+	#get_tree().get_root().add_child(game)
+	#hide()
+
+func _player_disconnected(id):
+	print("Player disconnected from the server :(")
+	globals.current_player_count -= 1
+	globals.players.erase(id)
 
 func _on_buttonHost_pressed():
 	print("Hosting network with IP: " + str(goalIP))
