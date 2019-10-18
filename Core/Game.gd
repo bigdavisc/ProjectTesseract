@@ -7,9 +7,11 @@ func _ready():
 	thisPlayer.set_network_master(get_tree().get_network_unique_id())
 	add_child(thisPlayer)
 	
-	#Create other player
+	#Create other players
 	if globals.current_player_count >= 2:
 		var player_list = globals.players.keys()
+		print("Made it here bish")
+		print(player_list.size())
 		for key in player_list:
 			print(str(key))
 			var otherPlayer = preload("res://Entities/Player/Player.tscn").instance()
