@@ -9,7 +9,7 @@ const MAX_PLAYERS = 20
 
 var players = { }
 var self_data = { name = '', position = Vector3(360, 180, 0)}
-var goalIP = "10.0.0.231"
+var goalIP = "127.0.0.1"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -23,7 +23,8 @@ func _player_connected(id):
 	hide()
 
 func _on_buttonHost_pressed():
-	print("Hosting network")
+	print("Hosting network with IP: " + str(goalIP))
+	print("Server is on port: " + str(DEFAULT_PORT))
 	var host = NetworkedMultiplayerENet.new()
 	var res = host.create_server(DEFAULT_PORT, MAX_PLAYERS)
 	if res != OK:
@@ -41,3 +42,7 @@ func _on_buttonJoin_pressed():
 	get_tree().set_network_peer(host)
 	$buttonHost.hide()
 	$buttonJoin.disabled = true
+
+func _on_PortValue_text_changed():
+	goalIP = $PortValue.text
+	print(str(goalIP))

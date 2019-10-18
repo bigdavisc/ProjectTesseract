@@ -1,7 +1,7 @@
 extends Spatial
 
 func _ready():
-	#Create outself first
+	#Create ourself first
 	var thisPlayer = preload("res://Entities/Player/Player.tscn").instance()
 	thisPlayer.set_name(str(get_tree().get_network_unique_id()))
 	thisPlayer.set_network_master(get_tree().get_network_unique_id())

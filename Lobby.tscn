@@ -6,17 +6,31 @@
 script = ExtResource( 1 )
 
 [node name="buttonJoin" type="Button" parent="."]
-margin_left = 369.298
-margin_top = 324.078
-margin_right = 583.298
-margin_bottom = 408.078
+margin_left = 625.868
+margin_top = 362.36
+margin_right = 839.868
+margin_bottom = 446.36
 text = "JOIN"
 
 [node name="buttonHost" type="Button" parent="."]
-margin_left = 372.313
-margin_top = 161.285
-margin_right = 586.313
-margin_bottom = 245.285
+margin_left = 234.661
+margin_top = 349.436
+margin_right = 448.661
+margin_bottom = 433.436
 text = "HOST"
+
+[node name="PortValue" type="TextEdit" parent="."]
+margin_left = 414.584
+margin_top = 277.747
+margin_right = 654.584
+margin_bottom = 317.747
+
+[node name="Label" type="Label" parent="."]
+margin_left = 483.003
+margin_top = 246.796
+margin_right = 600.003
+margin_bottom = 285.796
+text = "Enter an IP"
 [connection signal="pressed" from="buttonJoin" to="." method="_on_buttonJoin_pressed"]
 [connection signal="pressed" from="buttonHost" to="." method="_on_buttonHost_pressed"]
+[connection signal="text_changed" from="PortValue" to="." method="_on_PortValue_text_changed"]

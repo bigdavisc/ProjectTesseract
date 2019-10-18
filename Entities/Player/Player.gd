@@ -11,7 +11,6 @@ var mouse_sensetivity = 0.1  # We might want to move this into a settings file
 var gravity = 20  #Will be changed by plane Player exists on
 
 var input_velocity = Vector2()
-var position = 0
 var vertical_velocity = 0
 var bullet_scene = load("res://Entities/Weapons/Bullet.tscn")
 
