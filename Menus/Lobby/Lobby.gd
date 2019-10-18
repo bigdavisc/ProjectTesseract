@@ -19,11 +19,9 @@ func _player_connected(id):
 	globals.current_player_count += 1
 	globals.players[id] = id #Turn into a player name
 	print("Current player count: " + str(globals.current_player_count))
-	
-	#Remove this code
-	#var game = preload("res://Core/Game.tscn").instance()
-	#get_tree().get_root().add_child(game)
-	#hide()
+	var game = preload("res://Core/Game.tscn").instance()
+	get_tree().get_root().add_child(game)
+	hide()
 
 func _player_disconnected(id):
 	print("Player disconnected from the server :(")
@@ -59,7 +57,6 @@ func _on_buttonJoin_pressed():
 
 func _on_LaunchMatch_pressed():
 	game_begin()
-	rpc_unreliable("game_begin")
 
 func game_begin():
 	var game = preload("res://Core/Game.tscn").instance()
