@@ -19,18 +19,28 @@ margin_right = 448.661
 margin_bottom = 433.436
 text = "HOST"
 
-[node name="PortValue" type="TextEdit" parent="."]
+[node name="IPValue" type="TextEdit" parent="."]
 margin_left = 414.584
 margin_top = 277.747
 margin_right = 654.584
 margin_bottom = 317.747
 
-[node name="Label" type="Label" parent="."]
+[node name="IPLabel" type="Label" parent="."]
 margin_left = 483.003
 margin_top = 246.796
 margin_right = 600.003
 margin_bottom = 285.796
 text = "Enter an IP"
+
+[node name="LaunchMatch" type="Button" parent="."]
+visible = false
+margin_left = 403.158
+margin_top = 24.2105
+margin_right = 653.158
+margin_bottom = 85.2105
+disabled = true
+text = "Start the game"
 [connection signal="pressed" from="buttonJoin" to="." method="_on_buttonJoin_pressed"]
 [connection signal="pressed" from="buttonHost" to="." method="_on_buttonHost_pressed"]
-[connection signal="text_changed" from="PortValue" to="." method="_on_PortValue_text_changed"]
+[connection signal="text_changed" from="IPValue" to="." method="_on_IPValue_text_changed"]
+[connection signal="pressed" from="LaunchMatch" to="." method="_on_LaunchMatch_pressed"]
