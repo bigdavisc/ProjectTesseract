@@ -56,7 +56,7 @@ func _on_buttonJoin_pressed():
 
 
 func _on_IPValue_text_changed():
-	goalIP = $PortValue.text
+	goalIP = $IPValue.text
 	print(str(goalIP))
 
 
