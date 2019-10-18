@@ -6,15 +6,26 @@ const LOWER_VIEW_LIMIT = 50
 const MOUSE_SENSITIVITY = 0.1
 const JUMP_VELOCITY = 10
 
+
 var mouse_sensetivity = 0.1  # We might want to move this into a settings file
 var gravity = 20  #Will be changed by plane Player exists on
 
 var input_velocity = Vector2()
+var position = 0
 var vertical_velocity = 0
 var bullet_scene = load("res://Entities/Weapons/Bullet.tscn")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+puppet func setPosition(pos):
+	set_global_transform(pos)
+
+master func shutItDown():
+	rpc("shutDown")
+
+sync func shutDown():
+	get_tree().quit()
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -24,8 +35,11 @@ func _process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta):
-	process_input()
-	process_movement(delta)
+	if is_network_master():
+		#Tell all other players your new position
+		process_input()
+		rpc_unreliable("setPosition", get_global_transform())
+		process_movement(delta)
 	
 func process_input():
 	input_velocity = Vector2()
@@ -38,7 +52,9 @@ func process_input():
 	if(Input.is_action_pressed("strafe_left")):
 		input_velocity.x -= 1
 	input_velocity = input_velocity.normalized()
-	
+
+	if(Input.is_key_pressed(KEY_Q)):
+		shutItDown()
 	if(Input.is_action_just_pressed("left_click")):
 		shoot()
 
@@ -73,12 +89,15 @@ func process_movement(delta):
 	
 	var velocity = Vector3(horizontal_velocity.x, vertical_velocity, horizontal_velocity.z)
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0), 0.05, 4, deg2rad(40))
+	
+	#This needs to be moved up for latency issues idk how yet
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		$Camera.rotate_x(deg2rad(event.relative.y * mouse_sensetivity * -1))
 		$Camera.rotation.x = clamp($Camera.rotation.x, deg2rad(-LOWER_VIEW_LIMIT), deg2rad(UPPER_VIEW_LIMIT))
 		rotate_y(deg2rad(event.relative.x * mouse_sensetivity * -1))
+		#Likely needs to tell other players you rotate
 		
 func shoot():
 	var bullet = bullet_scene.instance()
