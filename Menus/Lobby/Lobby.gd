@@ -16,7 +16,7 @@ func _ready():
 func _player_connected(id):
 	print("Player connected to the server!")
 	globals.current_player_count += 1
-	globals.players[id] = "Some Player" #Turn into a player name
+	globals.players[id] = id #Turn into a player name
 	print("Current player count: " + str(globals.current_player_count))
 	
 	#Remove this code
@@ -38,6 +38,7 @@ func _on_buttonHost_pressed():
 		print("Error creating server")
 		return
 		
+	globals.current_player_count += 1
 	$buttonJoin.hide()
 	$IPLabel.hide()
 	$IPValue.hide()
