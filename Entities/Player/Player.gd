@@ -19,6 +19,9 @@ func _ready():
 
 puppet func setPosition(pos):
 	set_global_transform(pos)
+	
+puppet func setVerticalRotation(rot):
+	$Camera.rotation = rot
 
 master func shutItDown():
 	rpc("shutDown")
@@ -92,11 +95,13 @@ func process_movement(delta):
 	#This needs to be moved up for latency issues idk how yet
 
 func _input(event):
+	if !is_network_master():
+		return
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		$Camera.rotate_x(deg2rad(event.relative.y * UserSettings.mouse_sensetivity * -1))
 		$Camera.rotation.x = clamp($Camera.rotation.x, deg2rad(-LOWER_VIEW_LIMIT), deg2rad(UPPER_VIEW_LIMIT))
 		rotate_y(deg2rad(event.relative.x * UserSettings.mouse_sensetivity * -1))
-		#Likely needs to tell other players you rotate
+		rpc_unreliable("setVerticalRotation", $Camera.rotation)
 		
 func shoot():
 	var bullet = bullet_scene.instance()
