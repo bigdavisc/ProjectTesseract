@@ -11,14 +11,19 @@ var self_data = { name = ''}
 var connectedPlayers = { }
 var goalIP = "127.0.0.1"
 
+var username_label = preload("res://Menus/Lobby/UsernameLabel.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
+	var name_label = username_label.instance()
+	name_label.text = UserSettings.user_name
+	$Panel/Container/VContainer/Panel/Usernames.add_child(name_label)
 
 func _player_connected(id):
 	print("Player connected to the server!")
 	
-	rpc_id(id, "get_username", UserSettings.user_name)
+	rpc_id(id, "register_user", UserSettings.user_name)
 	print("Current player count: " + str(connectedPlayers.size() + 1))
 	#var game = preload("res://Core/Game.tscn").instance()
 	#get_tree().get_root().add_child(game)
@@ -58,6 +63,9 @@ func _on_buttonJoin_pressed():
 remote func register_user(name):
 	var id = get_tree().get_rpc_sender_id()
 	connectedPlayers[id] = name
+	var name_label = username_label.instance()
+	name_label.text = name
+	$Panel/Container/VContainer/Panel/Usernames.add_child(name_label)
 	
 master func _on_LaunchMatch_pressed():
 	game_begin()
