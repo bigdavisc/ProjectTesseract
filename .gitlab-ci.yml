@@ -1,4 +1,4 @@
-image: greenfox1505/godot-ci-builder
+image: markam/godot-build-automation
 
 pages:
   script:
