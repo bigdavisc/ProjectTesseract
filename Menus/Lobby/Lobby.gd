@@ -37,6 +37,7 @@ func _on_buttonHost_pressed():
 	var upnp = UPNP.new()
 	upnp.discover(2000, 2, "InternetGatewayDevice")
 	upnp.add_port_mapping(DEFAULT_PORT)
+	print("Server (should) also be open on " + str(upnp.query_external_address()) + ":" + str(DEFAULT_PORT))
 	
 	var host = NetworkedMultiplayerENet.new()
 	var res = host.create_server(DEFAULT_PORT, MAX_PLAYERS)
