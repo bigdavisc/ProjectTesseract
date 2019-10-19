@@ -13,6 +13,6 @@ func _ready():
 	for key in connectedPlayers.keys():
 		print("Create player: " + connectedPlayers[key])
 		var otherPlayer = preload("res://Entities/Player/Player.tscn").instance()
-		otherPlayer.set_name(str(connectedPlayers.get(key)))
+		otherPlayer.set_name(str(key))
 		otherPlayer.set_network_master(key)
 		add_child(otherPlayer)
