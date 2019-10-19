@@ -19,7 +19,6 @@ func _player_connected(id):
 	globals.current_player_count += 1
 	globals.players[id] = id #Turn into a player name
 	print("Current player count: " + str(globals.current_player_count))
-	set_network_master(get_tree().get_network_unique_id())
 	#var game = preload("res://Core/Game.tscn").instance()
 	#get_tree().get_root().add_child(game)
 	#hide()
