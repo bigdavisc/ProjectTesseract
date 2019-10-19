@@ -24,4 +24,4 @@ Folders: **PascalCase**
 - Matthias Harden
 - Joe Zlonicky
 - Noah Jacobsen
-- *Davis Carlson*
+- Davis Carlson
