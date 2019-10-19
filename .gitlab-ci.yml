@@ -1,0 +1,10 @@
+image: greenfox1505/godot-ci-builder
+
+pages:
+  script:
+  - builder
+  artifacts:
+    paths:
+    - public/*
+  only:
+  - master
