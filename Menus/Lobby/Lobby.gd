@@ -58,7 +58,8 @@ func _on_buttonJoin_pressed():
 
 master func _on_LaunchMatch_pressed():
 	game_begin()
-	rpc("game_begin")
+	for key in globals.players.keys():
+		rpc_id(globals.players[key], "game_begin")
 
 puppet func game_begin():
 	var game = preload("res://Core/Game.tscn").instance()
