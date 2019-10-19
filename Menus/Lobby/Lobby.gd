@@ -16,6 +16,7 @@ var username_label = preload("res://Menus/Lobby/UsernameLabel.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
+	loadIP()
 	var name_label = username_label.instance()
 	name_label.text = UserSettings.user_name
 	$Panel/Container/VContainer/Panel/Usernames.add_child(name_label)
@@ -58,8 +59,29 @@ func _on_buttonJoin_pressed():
 	if res != OK:
 		print("Error joining server")
 		return
+	saveIP()
 	get_tree().set_network_peer(host)
 
+func saveIP():
+	var save_data = {
+		"ip" : $Panel/Container/VContainer/HContainer/Container/HContainer/IPValue.text
+	}
+	var save_file = File.new()
+	save_file.open("user://lastIP.save", File.WRITE)
+	save_file.store_line(to_json(save_data))
+	save_file.close()
+
+func loadIP():
+	var save_file = File.new()
+	if not save_file.file_exists("user://lastIP.save"):
+		return
+		
+	save_file.open("user://lastIP.save", File.READ)
+	var line = parse_json(save_file.get_line())
+	var edit = $Panel/Container/VContainer/HContainer/Container/HContainer/IPValue
+	edit.text = line["ip"]
+	save_file.close()
+		
 remote func register_user(name):
 	var id = get_tree().get_rpc_sender_id()
 	connectedPlayers[id] = name

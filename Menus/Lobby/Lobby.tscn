@@ -44,14 +44,12 @@ margin_right = 784.0
 margin_bottom = 48.0
 
 [node name="Container" type="MarginContainer" parent="Panel/Container/VContainer/HContainer"]
-editor/display_folded = true
 margin_right = 509.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 custom_constants/margin_left = 0
 
 [node name="HContainer" type="HBoxContainer" parent="Panel/Container/VContainer/HContainer/Container"]
-editor/display_folded = true
 margin_right = 509.0
 margin_bottom = 48.0
 
