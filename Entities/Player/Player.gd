@@ -19,9 +19,6 @@ func _ready():
 
 puppet func setPosition(pos):
 	set_global_transform(pos)
-	
-puppet func setVerticalRotation(rot):
-	$Camera.rotation = rot
 
 master func shutItDown():
 	rpc("shutDown")
@@ -101,7 +98,6 @@ func _input(event):
 		$Camera.rotate_x(deg2rad(event.relative.y * UserSettings.mouse_sensetivity * -1))
 		$Camera.rotation.x = clamp($Camera.rotation.x, deg2rad(-LOWER_VIEW_LIMIT), deg2rad(UPPER_VIEW_LIMIT))
 		rotate_y(deg2rad(event.relative.x * UserSettings.mouse_sensetivity * -1))
-		rpc_unreliable("setVerticalRotation", $Camera.rotation)
 		
 func shoot():
 	var bullet = bullet_scene.instance()
