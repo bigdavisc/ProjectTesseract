@@ -4,7 +4,9 @@ extends MarginContainer
 # var a = 2
 # var b = "text"
 const DEFAULT_IP = "127.0.0.1"
-const DEFAULT_PORT = 25565
+const DEFAULT_PORT = 32200
+const MIN_PORT_RANGE = 32200
+const MAX_PORT_RANGE = 32300
 const MAX_PLAYERS = 20
 
 var self_data = { name = ''}
@@ -31,6 +33,11 @@ func _player_disconnected(id):
 func _on_buttonHost_pressed():
 	print("Hosting network with IP: " + str(goalIP))
 	print("Server is on port: " + str(DEFAULT_PORT))
+	
+	var upnp = UPNP.new()
+	upnp.discover(2000, 2, "InternetGatewayDevice")
+	upnp.add_port_mapping(DEFAULT_PORT)
+	
 	var host = NetworkedMultiplayerENet.new()
 	var res = host.create_server(DEFAULT_PORT, MAX_PLAYERS)
 	if res != OK:
