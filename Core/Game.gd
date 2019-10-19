@@ -1,6 +1,7 @@
 extends Spatial
 
 func _ready():
+	print("Create self: " + UserSettings.user_name)
 	#Create ourself first
 	var thisPlayer = preload("res://Entities/Player/Player.tscn").instance()
 	thisPlayer.set_name(str(get_tree().get_network_unique_id()))
@@ -8,13 +9,10 @@ func _ready():
 	add_child(thisPlayer)
 	
 	#Create other players
-	if globals.current_player_count >= 2:
-		var player_list = globals.players.keys()
-		print("Made it here bish")
-		print(player_list.size())
-		for key in player_list:
-			print(str(key))
-			var otherPlayer = preload("res://Entities/Player/Player.tscn").instance()
-			otherPlayer.set_name(str(globals.players.get(key)))
-			otherPlayer.set_network_master(globals.players.get(key))
-			add_child(otherPlayer)
+	var connectedPlayers = get_parent().get_node("Lobby").connectedPlayers
+	for key in connectedPlayers.keys():
+		print("Create player: " + connectedPlayers[key])
+		var otherPlayer = preload("res://Entities/Player/Player.tscn").instance()
+		otherPlayer.set_name(str(connectedPlayers.get(key)))
+		otherPlayer.set_network_master(key)
+		add_child(otherPlayer)

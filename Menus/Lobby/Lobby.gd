@@ -8,7 +8,9 @@ const DEFAULT_PORT = 25565
 const MAX_PLAYERS = 20
 
 var self_data = { name = ''}
+var connectedPlayers = { }
 var goalIP = "127.0.0.1"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -16,17 +18,15 @@ func _ready():
 func _player_connected(id):
 	print("Player connected to the server!")
 	
-	globals.current_player_count += 1
-	globals.players[id] = id #Turn into a player name
-	print("Current player count: " + str(globals.current_player_count))
+	connectedPlayers[id] = UserSettings.user_name #Turn into a player name
+	print("Current player count: " + str(connectedPlayers.size()))
 	#var game = preload("res://Core/Game.tscn").instance()
 	#get_tree().get_root().add_child(game)
 	#hide()
 
 func _player_disconnected(id):
 	print("Player disconnected from the server :(")
-	globals.current_player_count -= 1
-	globals.players.erase(id)
+	connectedPlayers.erase(id)
 
 func _on_buttonHost_pressed():
 	print("Hosting network with IP: " + str(goalIP))
@@ -57,8 +57,8 @@ func _on_buttonJoin_pressed():
 
 master func _on_LaunchMatch_pressed():
 	game_begin()
-	for key in globals.players.keys():
-		rpc_id(globals.players[key], "game_begin")
+	for key in connectedPlayers.keys():
+		rpc_id(key, "game_begin")
 
 puppet func game_begin():
 	var game = preload("res://Core/Game.tscn").instance()
