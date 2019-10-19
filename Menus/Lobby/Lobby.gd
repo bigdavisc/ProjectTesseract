@@ -18,8 +18,8 @@ func _ready():
 func _player_connected(id):
 	print("Player connected to the server!")
 	
-	connectedPlayers[id] = rpc_id(id, "get_username")
-	print("Current player count: " + str(connectedPlayers.size()))
+	rpc_id(id, "get_username", UserSettings.user_name)
+	print("Current player count: " + str(connectedPlayers.size() + 1))
 	#var game = preload("res://Core/Game.tscn").instance()
 	#get_tree().get_root().add_child(game)
 	#hide()
@@ -55,8 +55,9 @@ func _on_buttonJoin_pressed():
 		return
 	get_tree().set_network_peer(host)
 
-func get_username():
-	return UserSettings.user_name
+remote func register_user(name):
+	var id = get_tree().get_rpc_sender_id()
+	connectedPlayers[id] = name
 	
 master func _on_LaunchMatch_pressed():
 	game_begin()

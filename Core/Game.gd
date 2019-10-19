@@ -11,7 +11,7 @@ func _ready():
 	#Create other players
 	var connectedPlayers = get_parent().get_node("Lobby").connectedPlayers
 	for key in connectedPlayers.keys():
-		print("Create player: " + connectedPlayers[key])
+		print("Create player: " + str(connectedPlayers[key]))
 		var otherPlayer = preload("res://Entities/Player/Player.tscn").instance()
 		otherPlayer.set_name(str(key))
 		otherPlayer.set_network_master(key)
