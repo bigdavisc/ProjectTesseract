@@ -1,15 +1,13 @@
 extends Control
 
-var player_name = ""
-
 func _ready():
 	loadUserData()
 	
 func _on_ConnectButton_pressed():
-	player_name = $VerticalBoxes/Username/Field.text
-	if player_name == "":
+	if $VerticalBoxes/Username/Field.text == "":
 		return
 	saveUserData()
+	UserSettings.user_name = $VerticalBoxes/Username/Field.text
 	_load_game()
 
 

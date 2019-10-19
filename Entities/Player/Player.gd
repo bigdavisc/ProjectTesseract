@@ -3,11 +3,9 @@ extends KinematicBody
 const BASE_SPEED = 30
 const UPPER_VIEW_LIMIT = 50
 const LOWER_VIEW_LIMIT = 50
-const MOUSE_SENSITIVITY = 0.1
 const JUMP_VELOCITY = 10
 
 
-var mouse_sensetivity = 0.1  # We might want to move this into a settings file
 var gravity = 20  #Will be changed by plane Player exists on
 
 var input_velocity = Vector2()
@@ -95,9 +93,9 @@ func process_movement(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		$Camera.rotate_x(deg2rad(event.relative.y * mouse_sensetivity * -1))
+		$Camera.rotate_x(deg2rad(event.relative.y * UserSettings.mouse_sensetivity * -1))
 		$Camera.rotation.x = clamp($Camera.rotation.x, deg2rad(-LOWER_VIEW_LIMIT), deg2rad(UPPER_VIEW_LIMIT))
-		rotate_y(deg2rad(event.relative.x * mouse_sensetivity * -1))
+		rotate_y(deg2rad(event.relative.x * UserSettings.mouse_sensetivity * -1))
 		#Likely needs to tell other players you rotate
 		
 func shoot():

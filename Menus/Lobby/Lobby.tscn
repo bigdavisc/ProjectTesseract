@@ -98,6 +98,13 @@ margin_top = 58.0
 margin_right = 784.0
 margin_bottom = 360.0
 size_flags_vertical = 3
+
+[node name="Usernames" type="VBoxContainer" parent="Panel/Container/VContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
 [connection signal="pressed" from="Panel/Container/VContainer/HContainer/Container/HContainer/buttonJoin" to="." method="_on_buttonJoin_pressed"]
 [connection signal="pressed" from="Panel/Container/VContainer/HContainer/buttonHost" to="." method="_on_buttonHost_pressed"]
 [connection signal="pressed" from="Panel/Container/VContainer/HContainer/LaunchMatch" to="." method="_on_LaunchMatch_pressed"]
