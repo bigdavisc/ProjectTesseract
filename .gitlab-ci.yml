@@ -6,5 +6,3 @@ pages:
   artifacts:
     paths:
     - public/*
-  only:
-  - testing-gitlabCIMacSupport
