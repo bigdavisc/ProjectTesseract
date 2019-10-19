@@ -56,11 +56,11 @@ func _on_buttonJoin_pressed():
 		return
 	get_tree().set_network_peer(host)
 
-func _on_LaunchMatch_pressed():
+master func _on_LaunchMatch_pressed():
 	game_begin()
-	rpc_unreliable("game_begin")
+	rpc("game_begin")
 
-func game_begin():
+puppet func game_begin():
 	var game = preload("res://Core/Game.tscn").instance()
 	get_tree().get_root().add_child(game)
 	hide()
