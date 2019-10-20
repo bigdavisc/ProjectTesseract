@@ -40,23 +40,26 @@ func _on_buttonHost_pressed():
 	print("Hosting network with IP: " + str(goalIP))
 	print("Server is on port: " + str(DEFAULT_PORT))
 	
-	var upnp = UPNP.new()
-	upnp.discover(2000, 2, "InternetGatewayDevice")
-	upnp.add_port_mapping(DEFAULT_PORT)
-	print("Server (should) also be open on " + str(upnp.query_external_address()) + ":" + str(DEFAULT_PORT))
+	var openUPNPPort = $Panel/Container/VContainer/HContainer/Container/HContainer/upnpBroadcast.pressed
+	if (openUPNPPort == false):
+		var upnp = UPNP.new()
+		upnp.discover(2000, 2, "InternetGatewayDevice")
+		upnp.add_port_mapping(DEFAULT_PORT)
+		print("Server (should) also be open on " + str(upnp.query_external_address()) + ":" + str(DEFAULT_PORT))
 	
 	var host = NetworkedMultiplayerENet.new()
 	var res = host.create_server(DEFAULT_PORT, MAX_PLAYERS)
 	if res != OK:
 		print("Error creating server")
 		return
-
+	
 	var bar = $Panel/Container/VContainer/HContainer
-	var joinContainer = bar.get_node("Container/HContainer")
-	joinContainer.get_node("buttonJoin").disabled = true
-	joinContainer.get_node("IPValue").editable = false
-	bar.get_node("LaunchMatch").disabled = false
-	bar.get_node("buttonHost").disabled = true
+	var buttonContainer = bar.get_node("Container/HContainer")
+	buttonContainer.get_node("VBoxContainer/buttonJoin").disabled = true
+	buttonContainer.get_node("VBoxContainer/buttonSearch").disabled = true
+	buttonContainer.get_node("IPValue").editable = false
+	buttonContainer.get_node("LaunchMatch").disabled = false
+	buttonContainer.get_node("buttonHost").disabled = true
 	get_tree().set_network_peer(host)
 
 func _on_buttonJoin_pressed():
@@ -69,10 +72,22 @@ func _on_buttonJoin_pressed():
 		return
 	saveIP()
 	get_tree().set_network_peer(host)
+	
+func _on_buttonSearch_pressed():
+	print("Search Pressed")
 
 func saveIP():
 	var save_data = {
 		"ip" : $Panel/Container/VContainer/HContainer/Container/HContainer/IPValue.text
+	}
+	var save_file = File.new()
+	save_file.open("user://lastIP.save", File.WRITE)
+	save_file.store_line(to_json(save_data))
+	save_file.close()
+	
+func saveIPFromParam(ipAddress):
+	var save_data = {
+		"ip" : str(ipAddress) 
 	}
 	var save_file = File.new()
 	save_file.open("user://lastIP.save", File.WRITE)
