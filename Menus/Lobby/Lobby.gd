@@ -85,7 +85,7 @@ func _on_buttonSearch_pressed():
 	while(done != true and loopCount < MAX_SEARCH_LOOP):
 		if(socket.get_available_packet_count() > 0):
 			var data = JSON.parse(socket.get_packet().get_string_from_ascii())
-			if(data.error == OK):
+			if(data.error == OK and data.result.has("name") and data.result.has("ip") and data.result["name"] != "" and data.result["ip"] != ""):
 				done = true
 				print("Data received: " + str(data.result))
 				print("from IP"+socket.get_packet_ip())
