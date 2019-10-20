@@ -15,6 +15,10 @@ var self_data = { name = ''}
 var connectedPlayers = { }
 
 var broadcastThread
+var localIP
+var timer
+var dataDict = {}
+var broadcastSocket
 
 var username_label = preload("res://Menus/Lobby/UsernameLabel.tscn")
 
@@ -42,7 +46,6 @@ func _player_disconnected(id):
 func _on_buttonHost_pressed():
 	
 	var localIPs = IP.get_local_addresses()
-	var localIP = ""
 	var regex = RegEx.new()
 	regex.compile('^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$')
 	for ip in localIPs:
@@ -75,13 +78,27 @@ func _on_buttonHost_pressed():
 	buttonContainer.get_node("buttonHost").disabled = true
 	get_tree().set_network_peer(host)
 	
-	var thread = Thread.new()
-	thread.start(self, "broadcastGame")
-	thread.wait_to_finish()
+	broadcastThread = Thread.new()
+	broadcastThread.start(self, "create_timer_for_broadcast")
+
+func create_timer_for_broadcast(userdata):
+	broadcastSocket = PacketPeerUDP.new()
+	broadcastSocket.set_dest_address("255.255.255.255",UDP_BROADCASTING_PORT)
 	
-func broadcastGame(userdata):
-	print("hi")
-	return
+	dataDict = {}
+	dataDict["name"] = "Default Name"
+	dataDict["ip"] = localIP
+	
+	timer = Timer.new()
+	timer.set_wait_time(1.0)
+	timer.set_one_shot(false)
+	timer.connect("timeout", self, "broadcast_port")
+	add_child(timer)
+	timer.start()
+
+func broadcast_port():
+	print(JSON.print(dataDict))
+	broadcastSocket.put_packet(JSON.print(dataDict).to_ascii())
 
 func _on_buttonJoin_pressed():
 	print("Joining network")
@@ -98,7 +115,7 @@ func _on_buttonSearch_pressed():
 	var done = false
 	var loopCount = 0
 	var socket = PacketPeerUDP.new()
-	if(socket.listen(UDP_BROADCASTING_PORT) != OK):
+	if (socket.listen(UDP_BROADCASTING_PORT) != OK):
 		print("An error occurred listening on port "+ str(UDP_BROADCASTING_PORT))
 		return
 	while(done != true and loopCount < MAX_SEARCH_LOOP):
@@ -151,6 +168,8 @@ remote func register_user(name):
 	$Panel/Container/VContainer/Panel/Usernames.add_child(name_label)
 	
 master func _on_LaunchMatch_pressed():
+	timer.stop()
+	broadcastThread.wait_to_finish()
 	game_begin()
 	for key in connectedPlayers.keys():
 		rpc_id(key, "game_begin")
