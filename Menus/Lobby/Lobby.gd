@@ -13,7 +13,8 @@ const MAX_SEARCH_LOOP = 1000000
 
 var self_data = { name = ''}
 var connectedPlayers = { }
-var goalIP = "127.0.0.1"
+
+var broadcastThread
 
 var username_label = preload("res://Menus/Lobby/UsernameLabel.tscn")
 
@@ -39,7 +40,17 @@ func _player_disconnected(id):
 	connectedPlayers.erase(id)
 
 func _on_buttonHost_pressed():
-	print("Hosting network with IP: " + str(goalIP))
+	
+	var localIPs = IP.get_local_addresses()
+	var localIP = ""
+	var regex = RegEx.new()
+	regex.compile('^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$')
+	for ip in localIPs:
+		var result = regex.search(ip)
+		if (result and result.get_string() != "127.0.0.1"):
+    		localIP = result.get_string()
+	
+	print("Hosting network with IP: " + str(localIP))
 	print("Server is on port: " + str(DEFAULT_PORT))
 	
 	var openUPNPPort = $Panel/Container/VContainer/HContainer/Container/HContainer/upnpBroadcast.pressed
@@ -87,8 +98,8 @@ func _on_buttonSearch_pressed():
 			var data = JSON.parse(socket.get_packet().get_string_from_ascii())
 			if(data.error == OK and data.result.has("name") and data.result.has("ip") and data.result["name"] != "" and data.result["ip"] != ""):
 				done = true
-				print("Data received: " + str(data.result))
-				print("from IP"+socket.get_packet_ip())
+				$Panel/Container/VContainer/HContainer/Container/HContainer/IPValue.text = data.result["ip"]
+				saveIPFromParam(data.result["ip"])
 				socket.close()
 				return
 		loopCount += 1
@@ -132,6 +143,7 @@ remote func register_user(name):
 	$Panel/Container/VContainer/Panel/Usernames.add_child(name_label)
 	
 master func _on_LaunchMatch_pressed():
+	broadcastThread.wait_to_finish()
 	game_begin()
 	for key in connectedPlayers.keys():
 		rpc_id(key, "game_begin")
