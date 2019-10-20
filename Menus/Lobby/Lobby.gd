@@ -6,8 +6,10 @@ extends MarginContainer
 const DEFAULT_IP = "127.0.0.1"
 const DEFAULT_PORT = 32200
 const MIN_PORT_RANGE = 32200
-const MAX_PORT_RANGE = 32300
+const MAX_PORT_RANGE = 32299
+const UDP_BROADCASTING_PORT = 32300
 const MAX_PLAYERS = 20
+const MAX_SEARCH_LOOP = 1000000
 
 var self_data = { name = ''}
 var connectedPlayers = { }
@@ -74,7 +76,24 @@ func _on_buttonJoin_pressed():
 	get_tree().set_network_peer(host)
 	
 func _on_buttonSearch_pressed():
-	print("Search Pressed")
+	var done = false
+	var loopCount = 0
+	var socket = PacketPeerUDP.new()
+	if(socket.listen(UDP_BROADCASTING_PORT) != OK):
+		print("An error occurred listening on port "+ str(UDP_BROADCASTING_PORT))
+		return
+	while(done != true and loopCount < MAX_SEARCH_LOOP):
+		if(socket.get_available_packet_count() > 0):
+			var data = JSON.parse(socket.get_packet().get_string_from_ascii())
+			if(data.error == OK):
+				done = true
+				print("Data received: " + str(data.result))
+				print("from IP"+socket.get_packet_ip())
+				socket.close()
+				return
+		loopCount += 1
+	socket.close()        
+	print("No Packets Recieved. Stopping Search")
 
 func saveIP():
 	var save_data = {
