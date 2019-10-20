@@ -89,6 +89,9 @@ func create_timer_for_broadcast(userdata):
 	dataDict["name"] = "Default Name"
 	dataDict["ip"] = localIP
 	
+	print("Advertising lobby via UDP every second on port " + str(UDP_BROADCASTING_PORT) + " to address 255.255.255.255 with payload:" )
+	print(JSON.print(dataDict))
+	
 	timer = Timer.new()
 	timer.set_wait_time(1.0)
 	timer.set_one_shot(false)
