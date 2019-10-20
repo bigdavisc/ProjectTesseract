@@ -97,7 +97,7 @@ func create_timer_for_broadcast(userdata):
 	timer.start()
 
 func broadcast_port():
-	print(JSON.print(dataDict))
+	#print(JSON.print(dataDict))
 	broadcastSocket.put_packet(JSON.print(dataDict).to_ascii())
 
 func _on_buttonJoin_pressed():
