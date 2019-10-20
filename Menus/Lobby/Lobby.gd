@@ -74,6 +74,14 @@ func _on_buttonHost_pressed():
 	buttonContainer.get_node("LaunchMatch").disabled = false
 	buttonContainer.get_node("buttonHost").disabled = true
 	get_tree().set_network_peer(host)
+	
+	var thread = Thread.new()
+	thread.start(self, "broadcastGame")
+	thread.wait_to_finish()
+	
+func broadcastGame(userdata):
+	print("hi")
+	return
 
 func _on_buttonJoin_pressed():
 	print("Joining network")
@@ -143,7 +151,6 @@ remote func register_user(name):
 	$Panel/Container/VContainer/Panel/Usernames.add_child(name_label)
 	
 master func _on_LaunchMatch_pressed():
-	broadcastThread.wait_to_finish()
 	game_begin()
 	for key in connectedPlayers.keys():
 		rpc_id(key, "game_begin")
