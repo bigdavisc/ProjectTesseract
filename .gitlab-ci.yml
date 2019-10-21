@@ -1,9 +1,1 @@
 image: markam/godot-build-automation
-
-pages:
-  baseurl: "/deploy"
-  script:
-  - builder
-  artifacts:
-    paths:
-    - public/*
