@@ -1,6 +1,9 @@
 
-# ProjectTesseract
+# ProjectTesseract 
 Transdimensional Combat
+## Build Status
+
+Master Branch: [![pipeline status](https://gitlab.com/bigdavisc/projecttesseract/badges/master/pipeline.svg)](https://gitlab.com/bigdavisc/projecttesseract/commits/master)
 
 ## Coding Formats:
 Variable: **snake_case**
