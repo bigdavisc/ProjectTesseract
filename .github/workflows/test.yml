@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - uses: actions/checkout@master
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -35,5 +36,5 @@ jobs:
     - name: Export win64 build
       run: |
         mkdir -p win64
-        ./godot --export win64 project.godot "win64/ProjectTesseract.exe"
+        ./godot --path $GITHUB_WORKSPACE --export "win64" "win64/ProjectTesseract.exe"
 
