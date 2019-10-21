@@ -5,6 +5,8 @@ Transdimensional Combat
 
 Master Branch: ![pipeline status](https://gitlab.com/bigdavisc/projecttesseract/badges/master/pipeline.svg)
 
+Development Branch: ![pipeline status](https://gitlab.com/bigdavisc/projecttesseract/badges/develop/pipeline.svg)
+
 ## Coding Formats:
 Variable: **snake_case**
 
