@@ -35,5 +35,5 @@ jobs:
     - name: Export win64 build
       run: |
         mkdir -p win64
-        ./godot --export win64 project.godot "win64/ProjectTesseract.exe"
+        ./godot --export "Windows Desktop" project.godot "win64/ProjectTesseract.exe"
 
