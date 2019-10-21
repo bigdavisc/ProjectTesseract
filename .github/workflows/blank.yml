@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+    - deploy
+    - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install wget zip unzip
+    - name: Download Godot Headless
+      run: |
+        wget -q https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_linux_headless.64.zip
+        unzip Godot_v3.1.1-stable_linux_headless.64.zip
+        mv Godot_v3.1.1-stable_linux_headless.64 godot
+        chmod +x godot
+        
+    - name: Download Godot Export Templates
+      run: |
+        wget -q https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_export_templates.tpz
+        mkdir -p ~/.local/share/godot/templates
+        unzip Godot_v3.1.1-stable_export_templates.tpz -d ~/.local/share/godot/templates
+        mv ~/.local/share/godot/templates/templates ~/.local/share/godot/templates/3.1.1.stable
+    - name: Export win64 build
+      run: |
+        mkdir -p win64
+        ./godot --export win64 project.godot "win64/ProjectTesseract.exe"
+
