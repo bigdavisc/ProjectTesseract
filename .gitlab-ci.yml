@@ -1,6 +1,7 @@
 image: markam/godot-build-automation
 
 pages:
+  stage: deploy
   script:
   - builder
   artifacts:
