@@ -1,7 +1,7 @@
 image: markam/godot-build-automation
 
 pages:
-  stage: deploy
+  baseurl: "/deploy"
   script:
   - builder
   artifacts:
