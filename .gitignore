@@ -1,3 +1,4 @@
+.gitlab_ci.yml
 
 # Godot-specific ignores
 .import/
