@@ -39,6 +39,6 @@ jobs:
         ./godot --path $GITHUB_WORKSPACE --export "win64" "win64/ProjectTesseract.exe"
 
     - uses: actions/upload-artifact@master
-  with:
-    name: my-artifact
-    path: win64
+      with:
+       name: my-artifact
+       path: win64
