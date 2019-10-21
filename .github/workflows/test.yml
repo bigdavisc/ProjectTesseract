@@ -38,3 +38,7 @@ jobs:
         mkdir -p win64
         ./godot --path $GITHUB_WORKSPACE --export "win64" "win64/ProjectTesseract.exe"
 
+    - name: GitHub Pages Deploy
+      uses: maxheld83/ghpages@v0.2.1
+      env:
+        BUILD_DIR: win64/
