@@ -3,3 +3,6 @@ image: markam/godot-build-automation
 pages:
   script:
   - builder
+  artifacts:
+    paths:
+    - public/*
