@@ -5,4 +5,4 @@ pages:
   - builder
   artifacts:
     paths:
-    - public/develop/*
+    - public/*
