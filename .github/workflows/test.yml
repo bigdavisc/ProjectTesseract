@@ -41,6 +41,6 @@ jobs:
     - name: GitHub Pages Deploy
       uses: maxheld83/ghpages@v0.2.1
       with:
-        secrets: ${{ secrets.GH_PAT }}
+        GH_PAT: ${{ secrets.GH_PAT }}
       env:
         BUILD_DIR: win64/
