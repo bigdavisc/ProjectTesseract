@@ -50,9 +50,3 @@ jobs:
       with:
         name: macOS
         path: builds
-    - name: Deploy to Pages
-      uses: JamesIves/github-pages-deploy-action@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: builds # The folder the action should deploy.
