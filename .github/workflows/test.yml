@@ -40,12 +40,10 @@ jobs:
     - name: Export macOS build
       run: |
         ./godot --path $GITHUB_WORKSPACE --export "builds" "macOS/ProjectTesseract.app"
-    - name: Upload Windows 64bit
     - uses: actions/upload-artifact@master
       with:
         name: Windows_64
         path: builds
-    - name: Upload macOS
     - uses: actions/upload-artifact@master
       with:
         name: macOS
