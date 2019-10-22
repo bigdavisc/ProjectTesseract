@@ -38,23 +38,23 @@ jobs:
         mv ~/.local/share/godot/templates/templates ~/.local/share/godot/templates/3.1.1.stable
     - name: Export win64 build
       run: |
-        mkdir -p builds
-        ./godot --path $GITHUB_WORKSPACE --export "builds" "win64/ProjectTesseract.exe"
+        mkdir -p $GITHUB_WORKSPACE/builds
+        ./godot --path $GITHUB_WORKSPACE --export "$GITHUB_WORKSPACE/builds" "win64/ProjectTesseract.exe"
     - name: Export macOS build
       run: |
-        ./godot --path $GITHUB_WORKSPACE --export "builds" "macOS/ProjectTesseract.app"
+        ./godot --path $GITHUB_WORKSPACE --export "$GITHUB_WORKSPACE/builds" "macOS/ProjectTesseract.app"
     - uses: actions/upload-artifact@master
       with:
         name: Windows_64
-        path: builds
+        path: $GITHUB_WORKSPACE/builds
     - uses: actions/upload-artifact@master
       with:
         name: macOS
-        path: builds
+        path: $GITHUB_WORKSPACE/builds
     - name: Release
       uses: fnkr/github-action-ghr@v1
       if: startsWith(github.ref, 'refs/tags/')
       env:
-        GHR_PATH: builds
+        GHR_PATH: $GITHUB_WORKSPACE/builds
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
