@@ -43,13 +43,13 @@ jobs:
     - name: Upload Windows 64bit
     - uses: actions/upload-artifact@master
       with:
-       name: Windows_64
-       path: builds
+        name: Windows_64
+        path: builds
     - name: Upload macOS
     - uses: actions/upload-artifact@master
       with:
-       name: macOS
-       path: builds
+        name: macOS
+        path: builds
     - name: Deploy to Pages
       uses: JamesIves/github-pages-deploy-action@master
       env:
