@@ -1,4 +1,4 @@
-name: Test Windows Build
+name: Test Windows/macOS Build
 
 on:
   pull_request:
@@ -37,6 +37,8 @@ jobs:
       run: |
         mkdir -p win64
         ./godot --path $GITHUB_WORKSPACE --export "win64" "win64/ProjectTesseract.exe"
+    - name: Export macOS build
+      run: |
         mkdir -p macOS
         ./godot --path $GITHUB_WORKSPACE --export "macOS" "macOS/ProjectTesseract.app"
 
