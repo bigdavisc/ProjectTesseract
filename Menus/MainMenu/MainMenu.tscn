@@ -30,12 +30,12 @@ custom_constants/separation = 20
 
 [node name="Username" type="HBoxContainer" parent="VerticalBoxes"]
 margin_right = 579.0
-margin_bottom = 48.0
+margin_bottom = 45.0
 
 [node name="Prompt" type="Label" parent="VerticalBoxes/Username"]
-margin_top = 5.0
+margin_top = 3.0
 margin_right = 175.0
-margin_bottom = 43.0
+margin_bottom = 41.0
 rect_min_size = Vector2( 175, 0 )
 custom_fonts/font = SubResource( 1 )
 text = "Username: "
@@ -43,20 +43,20 @@ text = "Username: "
 [node name="Field" type="LineEdit" parent="VerticalBoxes/Username"]
 margin_left = 179.0
 margin_right = 579.0
-margin_bottom = 48.0
+margin_bottom = 45.0
 rect_min_size = Vector2( 400, 45 )
 custom_fonts/font = ExtResource( 3 )
 max_length = 15
 
 [node name="Password" type="HBoxContainer" parent="VerticalBoxes"]
-margin_top = 68.0
+margin_top = 65.0
 margin_right = 579.0
-margin_bottom = 116.0
+margin_bottom = 110.0
 
 [node name="Prompt" type="Label" parent="VerticalBoxes/Password"]
-margin_top = 5.0
+margin_top = 3.0
 margin_right = 175.0
-margin_bottom = 43.0
+margin_bottom = 41.0
 rect_min_size = Vector2( 175, 0 )
 custom_fonts/font = SubResource( 2 )
 text = "Password:"
@@ -64,16 +64,16 @@ text = "Password:"
 [node name="Field" type="LineEdit" parent="VerticalBoxes/Password"]
 margin_left = 179.0
 margin_right = 579.0
-margin_bottom = 48.0
+margin_bottom = 45.0
 rect_min_size = Vector2( 400, 45 )
 custom_fonts/font = ExtResource( 3 )
 max_length = 15
 secret = true
 
 [node name="ConnectButton" type="Button" parent="VerticalBoxes"]
-margin_top = 136.0
+margin_top = 130.0
 margin_right = 579.0
-margin_bottom = 180.0
+margin_bottom = 163.0
 custom_fonts/font = ExtResource( 3 )
 text = "Connect"
 [connection signal="pressed" from="VerticalBoxes/ConnectButton" to="." method="_on_ConnectButton_pressed"]
