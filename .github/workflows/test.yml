@@ -49,8 +49,8 @@ jobs:
         name: macOS
         path: builds
     - name: Release
-        uses: fnkr/github-action-ghr@v1
-        env:
-          GHR_PATH: builds/
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: fnkr/github-action-ghr@v1
+      env:
+        GHR_PATH: builds/
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
