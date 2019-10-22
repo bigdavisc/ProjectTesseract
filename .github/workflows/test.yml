@@ -6,8 +6,11 @@ on:
     - deploy
     - master
   push:
-    branches: 
+    branches:
       - master
+      - deploy
+    tags:
+      - v*
 
 jobs:
   build:
