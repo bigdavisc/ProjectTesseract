@@ -1,16 +1,6 @@
 name: Test Windows/macOS Build
 
-on:
-  pull_request:
-    branches:
-    - deploy
-    - master
-  push:
-    branches:
-      - master
-      - deploy
-    tags:
-      - v*
+on: [push, release]
 
 jobs:
   build:
