@@ -35,18 +35,27 @@ jobs:
         mv ~/.local/share/godot/templates/templates ~/.local/share/godot/templates/3.1.1.stable
     - name: Export win64 build
       run: |
-        mkdir -p win64
-        ./godot --path $GITHUB_WORKSPACE --export "win64" "win64/ProjectTesseract.exe"
+        mkdir -p builds
+        ./godot --path $GITHUB_WORKSPACE --export "builds" "win64/ProjectTesseract.exe"
     - name: Export macOS build
       run: |
-        mkdir -p macOS
-        ./godot --path $GITHUB_WORKSPACE --export "macOS" "macOS/ProjectTesseract.app"
-
+        ./godot --path $GITHUB_WORKSPACE --export "builds" "macOS/ProjectTesseract.app"
+        
+    - name: Upload Windows 64bit
     - uses: actions/upload-artifact@master
       with:
        name: Windows_64
-       path: win64
+       path: builds
+       
+    - name: Upload macOS
     - uses: actions/upload-artifact@master
       with:
        name: macOS
-       path: macOS
+       path: builds
+
+    - name: Deploy to Pages
+      uses: JamesIves/github-pages-deploy-action@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: builds # The folder the action should deploy.
