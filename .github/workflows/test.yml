@@ -1,6 +1,6 @@
 name: Test Windows/macOS Build
 
-on: [push, release]
+on: release
 
 jobs:
   build:
@@ -43,10 +43,12 @@ jobs:
       with:
         name: macOS
         path: builds/macOS
+    - name: Zip macOS
+      run: zip -r macOS.zip "builds/macOS"
     - name: Upload to release
       uses: JasonEtco/upload-to-release@master
       with:
-        args: builds/macOS/ProjectTesseract.app application/octet-stream
+        args: builds/macOS.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
