@@ -1,4 +1,4 @@
-name: Test Windows/macOS Build (DEVELOP)
+name: Release Windows/macOS/Linux Build (From Develop Branch)
 
 on: 
   release:
@@ -37,6 +37,10 @@ jobs:
       run: |
         mkdir -p builds/macOS
         ./godot --path $GITHUB_WORKSPACE --export "macOS" "builds/macOS/ProjectTesseract.app"
+    - name: Export Linux/X11 build
+      run: |
+        mkdir -p builds/linux
+        ./godot --path $GITHUB_WORKSPACE --export "linux/x11" "builds/linux/ProjectTesseract.zip"
     - uses: actions/upload-artifact@master
       with:
         name: Windows_64
@@ -45,11 +49,30 @@ jobs:
       with:
         name: macOS
         path: builds/macOS
-    - name: Zip macOS
-      run: zip -r macOS.zip "builds/macOS"
-    - name: Upload to release
+    - uses: actions/upload-artifact@master
+      with:
+        name: Linux/X11
+        path: builds/linux
+    - name: Zip Versions
+      run: |
+        zip Windows_64.zip "builds/win64/"
+        zip Linux_X11.zip "builds/linux/"
+        mv "builds/macOS/ProjectTesseract.app" "macOS.zip"
+    - name: Upload Windows 64 to release
+      uses: JasonEtco/upload-to-release@master
+      with:
+        args: Windows_64.zip application/octet-stream
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload macOS to release
       uses: JasonEtco/upload-to-release@master
       with:
         args: macOS.zip application/octet-stream
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload Linux to release
+      uses: JasonEtco/upload-to-release@master
+      with:
+        args: Linux_X11.zip application/octet-stream
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
