@@ -55,8 +55,12 @@ jobs:
         path: builds/linux/
     - name: Zip Versions
       run: |
-        zip Windows_64.zip "builds/win64/"
-        zip Linux_X11.zip "builds/linux/"
+        cd builds
+        zip -r Windows_64.zip win64
+        zip -r Linux_X11.zip linux
+        cd ..
+        mv builds/Windows_64.zip Windows_64.zip
+        mv builds/Linux_X11.zip Linux_X11.zip 
         mv "builds/macOS/ProjectTesseract.app" "macOS.zip"
     - name: Upload Windows 64 to release
       uses: JasonEtco/upload-to-release@master
