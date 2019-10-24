@@ -40,7 +40,7 @@ jobs:
     - name: Export Linux/X11 build
       run: |
         mkdir -p builds/linux
-        ./godot --path $GITHUB_WORKSPACE --export "linux/x11" "builds/linux/ProjectTesseract.zip"
+        ./godot --path $GITHUB_WORKSPACE --export "linux/x11" "builds/linux/ProjectTesseract.x86_64"
     - uses: actions/upload-artifact@master
       with:
         name: Windows_64
