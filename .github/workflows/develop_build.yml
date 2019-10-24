@@ -1,8 +1,9 @@
-name: Release Windows/macOS/Linux Build (From Develop Branch)
+name: Build Windows/macOS/Linux Build (From Develop Branch)
 
 on: 
-  release:
-    types: [published]
+  push:
+    branches:
+    - develop
 
 jobs:
   build:
@@ -53,30 +54,3 @@ jobs:
       with:
         name: Linux_X11
         path: builds/linux/
-    - name: Zip Versions
-      run: |
-        cd builds
-        zip -r Windows_64.zip win64
-        zip -r Linux_X11.zip linux
-        cd ..
-        mv builds/Windows_64.zip Windows_64.zip
-        mv builds/Linux_X11.zip Linux_X11.zip 
-        mv "builds/macOS/ProjectTesseract.app" "macOS.zip"
-    - name: Upload Windows 64 to release
-      uses: JasonEtco/upload-to-release@master
-      with:
-        args: Windows_64.zip application/octet-stream
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Upload macOS to release
-      uses: JasonEtco/upload-to-release@master
-      with:
-        args: macOS.zip application/octet-stream
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Upload Linux to release
-      uses: JasonEtco/upload-to-release@master
-      with:
-        args: Linux_X11.zip application/octet-stream
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
