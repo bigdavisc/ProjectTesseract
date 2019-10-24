@@ -1,5 +1,5 @@
 .gitlab_ci.yml
-
+.github/workflows/
 # Godot-specific ignores
 .import/
 export.cfg
