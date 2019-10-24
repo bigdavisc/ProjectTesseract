@@ -44,15 +44,15 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: Windows_64
-        path: builds/win64
+        path: builds/win64/
     - uses: actions/upload-artifact@master
       with:
         name: macOS
-        path: builds/macOS
+        path: builds/macOS/
     - uses: actions/upload-artifact@master
       with:
-        name: Linux/X11
-        path: builds/linux
+        name: Linux_X11
+        path: builds/linux/
     - name: Zip Versions
       run: |
         zip Windows_64.zip "builds/win64/"
