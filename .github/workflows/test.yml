@@ -29,7 +29,7 @@ jobs:
         unzip Godot_v3.1.1-stable_export_templates.tpz -d ~/.local/share/godot/templates
         mv ~/.local/share/godot/templates/templates ~/.local/share/godot/templates/3.1.1.stable
     - name: Fail Here
-      run: exit
+      run: exit 1
     - name: Export win64 build
       run: |
         mkdir -p builds
