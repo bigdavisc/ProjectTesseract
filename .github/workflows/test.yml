@@ -28,8 +28,6 @@ jobs:
         mkdir -p ~/.local/share/godot/templates
         unzip Godot_v3.1.1-stable_export_templates.tpz -d ~/.local/share/godot/templates
         mv ~/.local/share/godot/templates/templates ~/.local/share/godot/templates/3.1.1.stable
-    - name: Fail Here
-      run: exit 1
     - name: Export win64 build
       run: |
         mkdir -p builds
@@ -39,6 +37,10 @@ jobs:
       run: |
         mkdir -p builds/macOS
         ./godot --path $GITHUB_WORKSPACE --export "macOS" "builds/macOS/ProjectTesseract.app"
+    - name: Test if exports were successful
+      run: |
+        [ "$(ls -A builds/macOS)" ] && echo "Full" || exit 1
+        [ "$(ls -A builds/win64)" ] && echo "Full" || exit 1
     - uses: actions/upload-artifact@master
       with:
         name: Windows_64
